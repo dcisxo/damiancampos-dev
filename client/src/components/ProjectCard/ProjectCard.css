@@ -1,0 +1,26 @@
+.project-card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.project-placeholder {
+  background: linear-gradient(135deg, #1f2937 0%, #0f172a 100%);
+}
+
+.tech-badge {
+  cursor: default;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.tech-badge:hover {
+  background-color: #374151;
+  color: #f9fafb;
+}
