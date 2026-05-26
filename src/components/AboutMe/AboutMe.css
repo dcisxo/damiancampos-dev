@@ -1,8 +1,0 @@
-.tech-list-item {
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.tech-list-item:hover {
-  color: #ffffff;
-  transform: translateX(4px);
-}
