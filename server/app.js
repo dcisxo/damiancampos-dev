@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
+const path = require("path");
 
 const projectRoutes = require("./routes/projects");
 const contactRoutes = require("./routes/contact");
@@ -15,14 +16,22 @@ const PORT = process.env.PORT || 3001;
 // Security headers
 app.use(helmet());
 
-// CORS — allow the frontend origin
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  }),
-);
+// CORS — only needed in development (Vite dev server on a different port)
+if (process.env.NODE_ENV !== "production") {
+  app.use(
+    cors({
+      origin: process.env.CLIENT_URL || "http://localhost:5173",
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+    }),
+  );
+}
+
+// Serve built React app in production
+const clientDist = path.join(__dirname, "../client/dist");
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(clientDist));
+}
 
 // Body parsing
 app.use(express.json());
@@ -43,6 +52,13 @@ app.use("/api/auth", authRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
+
+// SPA catch-all — must come AFTER all API routes
+if (process.env.NODE_ENV === "production") {
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(clientDist, "index.html"));
+  });
+}
 
 // Central error handler
 app.use((err, req, res, next) => {
