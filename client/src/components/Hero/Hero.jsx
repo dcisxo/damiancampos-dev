@@ -22,7 +22,7 @@ const Hero = () => {
             View Projects
           </Link>
           <a
-            href="/resume.pdf"
+            href="/damian-campos-resume.pdf"
             download
             className="hero-btn-secondary px-6 py-3 border border-gray-600 text-white rounded-lg hover:border-white font-medium"
           >
