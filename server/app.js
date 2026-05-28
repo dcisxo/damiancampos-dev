@@ -55,7 +55,7 @@ app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 
 // SPA catch-all — must come AFTER all API routes
 if (process.env.NODE_ENV === "production") {
-  app.get("*", (req, res) => {
+  app.get("/{*path}", (req, res) => {
     res.sendFile(path.join(clientDist, "index.html"));
   });
 }
