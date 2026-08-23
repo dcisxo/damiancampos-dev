@@ -31,11 +31,11 @@ const Contact = () => {
       </p>
 
       <div className="contact-container space-y-4">
-        <a href="mailto:damian.exe@gmail.com" className="contact-card">
+        <a href="mailto:dcampos.exe@gmail.com" className="contact-card">
           <FiMail className="contact-icon" />
           <div>
             <p className="contact-label">Email</p>
-            <p className="contact-value">damian.exe@gmail.com</p>
+            <p className="contact-value">dcampos.exe@gmail.com</p>
           </div>
         </a>
         <a
