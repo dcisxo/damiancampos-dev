@@ -1,0 +1,7 @@
+[build]
+buildCommand = "npm install --include=dev && npm install --prefix server --include=dev && npm install --prefix client --include=dev && npm run build --prefix client"
+
+[deploy]
+startCommand = "node server/app.js"
+healthcheckPath = "/api/health"
+healthcheckTimeout = 120
